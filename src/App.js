@@ -23,6 +23,7 @@ import {
   X,
   ChevronDown,
   Infinity,
+  ChessKing,
 } from "lucide-react";
 import "./App.css";
 import logo from "./assets/digital engine.png";
@@ -448,21 +449,28 @@ function InfinityGraphic() {
           </linearGradient>
         </defs>
 
-        <path d="M 185 95 Q 185 55 235 55" fill="none" stroke="#1678ed" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.8" />
-        <circle cx="185" cy="95" r="4" fill="#1678ed" />
-        <circle cx="235" cy="55" r="3.5" fill="#1678ed" />
+        {/* Curved Connectors meeting in the exact middle */}
 
-        <path d="M 415 95 Q 415 55 365 55" fill="none" stroke="#ff9c42" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.8" />
-        <circle cx="415" cy="95" r="4" fill="#ff9c42" />
-        <circle cx="365" cy="55" r="3.5" fill="#ff9c42" />
+        <path d="M 200 50 Q 240 60 300 125" fill="none" stroke="#1678ed" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.85" />
+        <circle cx="200" cy="50" r="4" fill="#1678ed" />
 
-        <path d="M 185 255 Q 185 295 235 295" fill="none" stroke="#9b5bdc" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.8" />
-        <circle cx="185" cy="255" r="4" fill="#9b5bdc" />
-        <circle cx="235" cy="295" r="3.5" fill="#9b5bdc" />
 
-        <path d="M 415 255 Q 415 295 365 295" fill="none" stroke="#16bdb4" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.8" />
-        <circle cx="415" cy="255" r="4" fill="#16bdb4" />
-        <circle cx="365" cy="295" r="3.5" fill="#16bdb4" />
+        <path d="M 430 50 Q 380 60 300 125" fill="none" stroke="#ff9c42" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.85" />
+        <circle cx="430" cy="50" r="4" fill="#ff9c42" />
+
+
+        <circle cx="300" cy="125" r="4.5" fill="#9b5bdc" />
+
+
+        <path d="M 200 300 Q 240 290 300 225" fill="none" stroke="#9b5bdc" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.85" />
+        <circle cx="200" cy="300" r="4" fill="#9b5bdc" />
+
+
+        <path d="M 430 300 Q 380 290 300 225" fill="none" stroke="#16bdb4" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.85" />
+        <circle cx="430" cy="300" r="4" fill="#16bdb4" />
+
+
+        <circle cx="300" cy="225" r="4.5" fill="#2869ee" />
 
         <path
           d="

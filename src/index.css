@@ -6,8 +6,13 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   font-family: "Poppins", "Segoe UI", Arial, sans-serif;
   color: #111936;
   background: #ffffff;
@@ -17,5 +22,7 @@ body {
 
 #root {
   width: 100%;
+  max-width: 100vw;
   min-height: 100vh;
+  overflow-x: hidden;
 }
