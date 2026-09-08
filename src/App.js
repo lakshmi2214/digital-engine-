@@ -430,14 +430,6 @@ function Hero({ onNavigate }) {
 function InfinityGraphic() {
   return (
     <div className="infinity-wrapper">
-      <div className="infinity-image left-image">
-        <div className="image-overlay"></div>
-      </div>
-
-      <div className="infinity-image right-image">
-        <div className="image-overlay"></div>
-      </div>
-
       <svg className="infinity-svg" viewBox="0 0 600 350">
         <defs>
           <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -447,7 +439,54 @@ function InfinityGraphic() {
             <stop offset="75%" stopColor="#ff9c42" />
             <stop offset="100%" stopColor="#16bdb4" />
           </linearGradient>
+
+          <clipPath id="leftCircleClip">
+            <circle cx="200" cy="175" r="84" />
+          </clipPath>
+          <clipPath id="rightCircleClip">
+            <circle cx="400" cy="175" r="84" />
+          </clipPath>
         </defs>
+
+        {/* Left Circle Image (Businessman) */}
+        <g clipPath="url(#leftCircleClip)">
+          <image
+            href="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80"
+            x="116"
+            y="91"
+            width="168"
+            height="168"
+            preserveAspectRatio="xMidYMid slice"
+          />
+          <rect
+            x="116"
+            y="91"
+            width="168"
+            height="168"
+            fill="url(#infinityGradient)"
+            opacity="0.15"
+          />
+        </g>
+
+        {/* Right Circle Image (City Skyline) */}
+        <g clipPath="url(#rightCircleClip)">
+          <image
+            href="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=600&q=80"
+            x="316"
+            y="91"
+            width="168"
+            height="168"
+            preserveAspectRatio="xMidYMid slice"
+          />
+          <rect
+            x="316"
+            y="91"
+            width="168"
+            height="168"
+            fill="url(#infinityGradient)"
+            opacity="0.15"
+          />
+        </g>
 
         {/* Curved Connectors meeting in the exact middle */}
 

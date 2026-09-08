@@ -530,13 +530,17 @@ button {
   width: 600px;
   height: 350px;
   position: relative;
+  margin: 0 auto;
 }
 
 .infinity-svg {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 5;
+  display: block;
 }
 
 
@@ -785,8 +789,8 @@ button {
 /* GRADIENT WAVE */
 
 .gradient-wave {
-  width: 110%;
-  margin-left: -5%;
+  width: 100%;
+  margin: 0;
   height: 45px;
   position: relative;
   overflow: hidden;
@@ -1136,8 +1140,8 @@ button {
 .footer-wave {
   position: absolute;
   top: -35px;
-  left: -5%;
-  width: 110%;
+  left: 0;
+  width: 100%;
   height: 60px;
   background: linear-gradient(90deg,
       #2d5de8,
@@ -1436,32 +1440,59 @@ button {
   }
 
   .hero-section {
-    padding: 30px 16px 40px;
+    padding: 25px 16px 15px;
     min-height: auto;
+    width: 100%;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
   }
 
   .hero-badge {
     font-size: 9px;
     padding: 6px 12px;
-    margin-bottom: 14px;
+    margin: 0 auto 14px;
+    display: inline-flex;
+    text-align: center;
   }
 
   .hero-left h1 {
-    font-size: clamp(32px, 8.5vw, 42px);
-    letter-spacing: -1.5px;
-    line-height: 1.05;
+    font-size: clamp(28px, 7.5vw, 38px);
+    letter-spacing: -1.2px;
+    line-height: 1.1;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
   }
 
   .hero-description {
-    font-size: 13px;
-    margin-top: 12px;
+    font-size: 12.5px;
+    margin: 12px auto 0;
     line-height: 1.6;
+    text-align: center;
+    max-width: 320px;
   }
 
   .hero-actions {
     flex-direction: column;
     gap: 12px;
-    margin-top: 24px;
+    margin: 20px auto 0;
+    width: 100%;
+    max-width: 320px;
+    align-items: center;
   }
 
   .primary-btn,
@@ -1471,28 +1502,12 @@ button {
     padding: 13px 20px;
   }
 
-  .hero-right {
-    width: 100%;
-    max-width: 100vw;
-    height: auto;
-    min-height: 240px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    margin-top: 15px;
-  }
-
-  .infinity-wrapper {
-    transform-origin: center center;
-    transform: scale(0.52);
-    margin: -75px 0;
-  }
-
   .stats-row {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    margin-top: 28px;
+    margin: 22px auto 0;
+    width: 100%;
+    max-width: 340px;
   }
 
   .stat-box {
@@ -1516,60 +1531,96 @@ button {
     font-size: 8.5px;
   }
 
+  .hero-right {
+    width: 100%;
+    max-width: 100vw;
+    height: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 10px auto 5px;
+    position: relative;
+  }
+
+  .infinity-wrapper {
+    width: 600px;
+    height: 350px;
+    flex-shrink: 0;
+    transform: scale(0.55);
+    transform-origin: center center;
+    margin: 0;
+  }
+
+  .gradient-wave {
+    width: 100%;
+    margin: 15px 0 5px;
+    height: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
   /* Services Mobile */
   .services-section {
-    padding: 35px 16px 50px;
+    padding: 30px 16px 45px;
   }
 
   .section-title h2 {
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1.2;
   }
 
   .section-title p {
-    font-size: 12px;
+    font-size: 11.5px;
+    line-height: 1.6;
   }
 
   .services-layout {
-    gap: 18px;
-    margin-top: 25px;
+    gap: 14px;
+    margin-top: 20px;
   }
 
   .services-center {
-    width: 260px;
-    height: 260px;
+    width: 180px;
+    height: 180px;
     margin: 10px auto 20px;
   }
 
   .ring-outer {
-    width: 250px;
-    height: 250px;
+    width: 175px;
+    height: 175px;
   }
 
   .ring-middle {
-    width: 200px;
-    height: 200px;
+    width: 145px;
+    height: 145px;
   }
 
   .center-logo-box {
-    width: 160px;
-    height: 160px;
-    padding: 10px;
+    width: 120px;
+    height: 120px;
+    padding: 8px;
+    box-shadow: 0 10px 28px rgba(25, 45, 95, 0.08);
   }
 
   .services-center-logo {
-    width: 110px;
+    width: 85px;
   }
 
   .services-center-tagline {
-    font-size: 7px;
+    font-size: 6.5px;
+    letter-spacing: 1.5px;
+    margin-top: 2px;
   }
 
   .service-item.left,
   .service-item.right {
-    padding: 12px 14px;
+    padding: 13px 15px;
     gap: 12px;
-    border-radius: 12px;
+    border-radius: 13px;
+    background: #ffffff;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 4px 14px rgba(25, 45, 90, 0.03);
   }
 
   .service-round-icon {
@@ -1587,12 +1638,20 @@ button {
 
   /* Asli Kahani Mobile */
   .asli-section {
-    padding: 40px 16px;
+    padding: 35px 16px;
+    gap: 24px;
+  }
+
+  .asli-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
   }
 
   .asli-logo-box {
-    width: 68px;
-    height: 68px;
+    width: 66px;
+    height: 66px;
   }
 
   .asli-info h2 {
@@ -1600,25 +1659,29 @@ button {
   }
 
   .asli-info h4 {
-    font-size: 10px;
+    font-size: 10.5px;
   }
 
   .asli-info p {
-    font-size: 11.5px;
+    font-size: 11px;
+    line-height: 1.6;
+    margin-top: 8px;
   }
 
   .media-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
   .media-card {
-    padding: 18px 16px;
-    min-height: auto;
+    padding: 16px 12px;
+    min-height: 130px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    border-radius: 12px;
   }
 
   /* Footer Mobile */
@@ -1627,22 +1690,30 @@ button {
   }
 
   .footer-items {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 30px 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 12px;
+    padding: 28px 16px 24px;
   }
 
   .footer-item {
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding-bottom: 14px;
-    justify-content: center;
-    gap: 16px;
+    border-bottom: none;
+    padding: 6px 0;
+    justify-content: flex-start;
+    gap: 12px;
   }
 
   .footer-item:last-child {
     border-bottom: none;
-    padding-bottom: 0;
+    padding-bottom: 6px;
+  }
+
+  .footer-item strong {
+    font-size: 12px;
+  }
+
+  .footer-item span {
+    font-size: 9px;
   }
 
   /* Inner Pages Mobile */
