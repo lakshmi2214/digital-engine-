@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowUpRight, Shield, Sparkles, Award } from "lucide-react";
+import { ArrowUpRight, Sparkles, Award } from "lucide-react";
 
 const projects = [
   {

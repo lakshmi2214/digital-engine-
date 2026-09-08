@@ -1,4 +1,4 @@
-import React, { Profiler, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Lightbulb,
   Megaphone,
@@ -8,7 +8,6 @@ import {
   BriefcaseBusiness,
   Palette,
   ChartNoAxesCombined,
-  Newspaper,
   Clapperboard,
   UserRound,
   Store,
@@ -20,73 +19,356 @@ import {
   FileText,
   PlayCircle,
   ArrowRight,
-  ChevronDown,
   Menu,
+  X,
+  ChevronDown,
+  Infinity,
 } from "lucide-react";
 import "./App.css";
 import logo from "./assets/digital engine.png";
+import asliLogo from "./assets/asli_kahani.png";
 import About from "./Navpages/About";
 import Work from "./Navpages/Work";
 import Insights from "./Navpages/Insights";
 import Contact from "./Navpages/Contact";
 
+// Services Data
+const leftServices = [
+  {
+    icon: BookOpen,
+    title: "Digital Transformation",
+    text: "Technology | Automation | AI",
+    color: "#0ba9e8",
+    gradient: "linear-gradient(135deg, #0ba9e8, #285be8)",
+    shadow: "rgba(11, 169, 232, 0.35)",
+  },
+  {
+    icon: Palette,
+    title: "Branding & Creative",
+    text: "Identity | Design | Strategy",
+    color: "#9b5bdc",
+    gradient: "linear-gradient(135deg, #9b5bdc, #7a3ee9)",
+    shadow: "rgba(155, 91, 220, 0.35)",
+  },
+  {
+    icon: ChartNoAxesCombined,
+    title: "Marketing Growth",
+    text: "Performance | SEO | Social",
+    color: "#f05b73",
+    gradient: "linear-gradient(135deg, #f05b73, #ee5a76)",
+    shadow: "rgba(240, 91, 115, 0.35)",
+  },
+  {
+    icon: Mic,
+    title: "PR & Media",
+    text: "Asli Kahani | Reputation | Coverage",
+    color: "#ff9c42",
+    gradient: "linear-gradient(135deg, #ff9c42, #fa8c16)",
+    shadow: "rgba(255, 156, 66, 0.35)",
+  },
+  {
+    icon: Clapperboard,
+    title: "Video Production",
+    text: "Films | Ads | Stories",
+    color: "#f5a623",
+    gradient: "linear-gradient(135deg, #f5a623, #faad14)",
+    shadow: "rgba(245, 166, 35, 0.35)",
+  },
+];
+
+const rightServices = [
+  {
+    icon: UserRound,
+    title: "Business Consulting",
+    text: "Strategy | Scaling | Growth",
+    color: "#20c997",
+    gradient: "linear-gradient(135deg, #20c997, #10b981)",
+    shadow: "rgba(32, 201, 151, 0.35)",
+  },
+  {
+    icon: Store,
+    title: "Franchise Development",
+    text: "Systems | Expansion | Licensing",
+    color: "#06b6d4",
+    gradient: "linear-gradient(135deg, #06b6d4, #13c2c2)",
+    shadow: "rgba(6, 182, 212, 0.35)",
+  },
+  {
+    icon: CalendarDays,
+    title: "Events & Experiences",
+    text: "Branding | Activations | Events",
+    color: "#3b82f6",
+    gradient: "linear-gradient(135deg, #3b82f6, #1890ff)",
+    shadow: "rgba(59, 130, 246, 0.35)",
+  },
+  {
+    icon: Target,
+    title: "Sales & Lead Generation",
+    text: "Pipeline | Conversion | Revenue",
+    color: "#7a3ee9",
+    gradient: "linear-gradient(135deg, #7a3ee9, #722ed1)",
+    shadow: "rgba(122, 62, 233, 0.35)",
+  },
+  {
+    icon: CircleDollarSign,
+    title: "Investor Readiness",
+    text: "Pitch Deck | Funding | Valuation",
+    color: "#ec4899",
+    gradient: "linear-gradient(135deg, #ec4899, #eb2f96)",
+    shadow: "rgba(236, 72, 153, 0.35)",
+  },
+];
+
+// Asli Kahani Data
+const mediaItems = [
+  { icon: BookOpen, title: "Business Features", text: "Stories that build credibility" },
+  { icon: Mic, title: "Founder Interviews", text: "Real stories. Real impact." },
+  { icon: FileText, title: "Magazine Coverage", text: "Print. Digital. Nationwide." },
+  { icon: Megaphone, title: "Digital PR", text: "Reach the right audience." },
+  { icon: PlayCircle, title: "Podcasts & Videos", text: "Conversations that inspire." },
+];
+
 function Logo() {
   return (
     <div className="brand-logo">
       <img src={logo} alt="Digital Engine Logo" className="brand-logo-img" />
-
-
-
     </div>
   );
 }
 
 function Navbar({ currentPage, onNavigate }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [asliOpen, setAsliOpen] = useState(false);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setServicesOpen(false);
+        setAsliOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const handleNavClick = (e, page) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     onNavigate(page);
+    setServicesOpen(false);
+    setAsliOpen(false);
+    setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const toggleServices = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setServicesOpen((prev) => !prev);
+    setAsliOpen(false);
+  };
+
+  const toggleAsli = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setAsliOpen((prev) => !prev);
+    setServicesOpen(false);
+  };
+
   return (
-    <header className="navbar">
+    <header className="navbar" ref={navRef}>
       <div onClick={(e) => handleNavClick(e, "home")} style={{ cursor: "pointer" }}>
         <Logo />
       </div>
 
-      <nav className="nav-menu">
-        <a href="#home" className={currentPage === "home" ? "active" : ""} onClick={(e) => handleNavClick(e, "home")}>
+      <nav className={`nav-menu ${mobileMenuOpen ? "mobile-active" : ""}`}>
+        <a
+          href="#home"
+          className={currentPage === "home" ? "active" : ""}
+          onClick={(e) => handleNavClick(e, "home")}
+        >
           Home
         </a>
-        <a href="#about" className={currentPage === "about" ? "active" : ""} onClick={(e) => handleNavClick(e, "about")}>
+
+        <a
+          href="#about"
+          className={currentPage === "about" ? "active" : ""}
+          onClick={(e) => handleNavClick(e, "about")}
+        >
           About Us
         </a>
-        <a href="#services" className={currentPage === "services" ? "active" : ""} onClick={(e) => handleNavClick(e, "services")}>
-          Services
-        </a>
-        <a href="#asli-kahani" className={currentPage === "asli-kahani" ? "active" : ""} onClick={(e) => handleNavClick(e, "asli-kahani")}>
-          Asli Kahani
-        </a>
-        <a href="#work" className={currentPage === "work" ? "active" : ""} onClick={(e) => handleNavClick(e, "work")}>
+
+        {/* Services Dropdown */}
+        <div
+          className={`nav-dropdown ${servicesOpen ? "open" : ""}`}
+          onMouseEnter={() => setServicesOpen(true)}
+          onMouseLeave={() => setServicesOpen(false)}
+        >
+          <button
+            type="button"
+            className={`nav-dropdown-toggle ${currentPage === "services" ? "active" : ""}`}
+            onClick={(e) => {
+              if (window.innerWidth <= 800) {
+                toggleServices(e);
+              } else {
+                handleNavClick(e, "services");
+              }
+            }}
+          >
+            <span>Services</span>
+            <ChevronDown size={14} className={`dropdown-chevron ${servicesOpen ? "rotate" : ""}`} />
+          </button>
+
+          <div className={`dropdown-menu services-dropdown-menu ${servicesOpen ? "show" : ""}`}>
+            <div className="dropdown-header">
+              <span className="dropdown-title">Our Growth Services</span>
+              <span
+                className="dropdown-all-link"
+                onClick={(e) => handleNavClick(e, "services")}
+              >
+                Explore All Services →
+              </span>
+            </div>
+            <div className="services-dropdown-grid">
+              <div className="dropdown-col">
+                {leftServices.map((service, idx) => {
+                  const Icon = service.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className="dropdown-item"
+                      onClick={(e) => handleNavClick(e, "services")}
+                    >
+                      <div className="dropdown-item-icon">
+                        <Icon size={16} />
+                      </div>
+                      <div className="dropdown-item-text">
+                        <div className="dropdown-item-title">{service.title}</div>
+                        <div className="dropdown-item-desc">{service.text}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="dropdown-col">
+                {rightServices.map((service, idx) => {
+                  const Icon = service.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className="dropdown-item"
+                      onClick={(e) => handleNavClick(e, "services")}
+                    >
+                      <div className="dropdown-item-icon">
+                        <Icon size={16} />
+                      </div>
+                      <div className="dropdown-item-text">
+                        <div className="dropdown-item-title">{service.title}</div>
+                        <div className="dropdown-item-desc">{service.text}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Asli Kahani Dropdown */}
+        <div
+          className={`nav-dropdown ${asliOpen ? "open" : ""}`}
+          onMouseEnter={() => setAsliOpen(true)}
+          onMouseLeave={() => setAsliOpen(false)}
+        >
+          <button
+            type="button"
+            className={`nav-dropdown-toggle ${currentPage === "asli-kahani" ? "active" : ""}`}
+            onClick={(e) => {
+              if (window.innerWidth <= 800) {
+                toggleAsli(e);
+              } else {
+                handleNavClick(e, "asli-kahani");
+              }
+            }}
+          >
+            <span>Asli Kahani</span>
+            <ChevronDown size={14} className={`dropdown-chevron ${asliOpen ? "rotate" : ""}`} />
+          </button>
+
+          <div className={`dropdown-menu asli-dropdown-menu ${asliOpen ? "show" : ""}`}>
+            <div className="dropdown-header">
+              <span className="dropdown-title">Media & Storytelling</span>
+              <span
+                className="dropdown-all-link"
+                onClick={(e) => handleNavClick(e, "asli-kahani")}
+              >
+                View Platform →
+              </span>
+            </div>
+            <div className="asli-dropdown-list">
+              {mediaItems.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="dropdown-item"
+                    onClick={(e) => handleNavClick(e, "asli-kahani")}
+                  >
+                    <div className="dropdown-item-icon mic-tint">
+                      <Icon size={16} />
+                    </div>
+                    <div className="dropdown-item-text">
+                      <div className="dropdown-item-title">{item.title}</div>
+                      <div className="dropdown-item-desc">{item.text}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="#work"
+          className={currentPage === "work" ? "active" : ""}
+          onClick={(e) => handleNavClick(e, "work")}
+        >
           Our Work
         </a>
-        <a href="#insights" className={currentPage === "insights" ? "active" : ""} onClick={(e) => handleNavClick(e, "insights")}>
+
+        <a
+          href="#insights"
+          className={currentPage === "insights" ? "active" : ""}
+          onClick={(e) => handleNavClick(e, "insights")}
+        >
           Insights
         </a>
+
+        <button
+          className="talk-btn mobile-talk-btn"
+          onClick={(e) => handleNavClick(e, "contact")}
+        >
+          Let's Talk <ArrowRight size={16} />
+        </button>
       </nav>
 
-      <button className="talk-btn" onClick={(e) => handleNavClick(e, "contact")}>
+      <button className="talk-btn desktop-talk-btn" onClick={(e) => handleNavClick(e, "contact")}>
         Let's Talk <ArrowRight size={16} />
       </button>
 
-      <button className="mobile-menu-btn">
-        <Menu size={25} />
+      <button
+        className="mobile-menu-btn"
+        onClick={() => setMobileMenuOpen((prev) => !prev)}
+        aria-label="Toggle navigation menu"
+      >
+        {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
       </button>
     </header>
   );
 }
 
-/* HERO SECTION */
+// Hero Section
 function Hero({ onNavigate }) {
   const stats = [
     { icon: Rocket, number: "500+", label: "Brands Empowered" },
@@ -245,28 +527,18 @@ function InfinityGraphic() {
   );
 }
 
-{/* SERVICES SECTION */ }
-const leftServices = [
-  { icon: BookOpen, title: "Digital Transformation", text: "Technology | Automation | AI" },
-  { icon: Palette, title: "Branding & Creative", text: "Identity | Design | Strategy" },
-  { icon: ChartNoAxesCombined, title: "Marketing Growth", text: "Performance | SEO | Social" },
-  { icon: Mic, title: "PR & Media", text: "Asli Kahani | Reputation | Coverage" },
-  { icon: Clapperboard, title: "Video Production", text: "Films | Ads | Stories" },
-];
 
-const rightServices = [
-  { icon: UserRound, title: "Business Consulting", text: "Strategy | Scaling | Growth" },
-  { icon: Store, title: "Franchise Development", text: "Systems | Expansion | Licensing" },
-  { icon: CalendarDays, title: "Events & Experiences", text: "Branding | Activations | Events" },
-  { icon: Target, title: "Sales & Lead Generation", text: "Pipeline | Conversion | Revenue" },
-  { icon: CircleDollarSign, title: "Investor Readiness", text: "Pitch Deck | Funding | Valuation" },
-];
 
-function ServiceItem({ service, side }) {
+function ServiceItem({ service, side, index, activeHover, onHover, badgeRef }) {
   const Icon = service.icon;
+  const isHovered = activeHover === `${side}-${index}`;
 
   return (
-    <div className={`service-item ${side}`}>
+    <div
+      className={`service-item ${side} ${isHovered ? "hovered" : ""}`}
+      onMouseEnter={() => onHover(`${side}-${index}`)}
+      onMouseLeave={() => onHover(null)}
+    >
       {side === "left" && (
         <div className="service-content">
           <h3>{service.title}</h3>
@@ -274,8 +546,17 @@ function ServiceItem({ service, side }) {
         </div>
       )}
 
-      <div className="service-round-icon">
-        <Icon size={21} />
+      <div
+        ref={badgeRef}
+        className="service-round-icon"
+        style={{
+          background: service.gradient,
+          boxShadow: isHovered
+            ? `0 10px 24px ${service.shadow}, 0 0 16px ${service.shadow}`
+            : `0 6px 18px ${service.shadow}`,
+        }}
+      >
+        <Icon size={20} />
       </div>
 
       {side === "right" && (
@@ -289,6 +570,135 @@ function ServiceItem({ service, side }) {
 }
 
 function Services() {
+  const [hoveredService, setHoveredService] = useState(null);
+  const containerRef = useRef(null);
+  const centerRef = useRef(null);
+  const left0Ref = useRef(null);
+  const left1Ref = useRef(null);
+  const left2Ref = useRef(null);
+  const left3Ref = useRef(null);
+  const left4Ref = useRef(null);
+  const right0Ref = useRef(null);
+  const right1Ref = useRef(null);
+  const right2Ref = useRef(null);
+  const right3Ref = useRef(null);
+  const right4Ref = useRef(null);
+
+  const leftBadgeRefs = [left0Ref, left1Ref, left2Ref, left3Ref, left4Ref];
+  const rightBadgeRefs = [right0Ref, right1Ref, right2Ref, right3Ref, right4Ref];
+
+  const [svgData, setSvgData] = useState({ left: [], right: [], width: 0, height: 0 });
+
+  const updateLinePositions = () => {
+    if (!containerRef.current || !centerRef.current) return;
+
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const centerRect = centerRef.current.getBoundingClientRect();
+
+    if (containerRect.width === 0 || containerRect.height === 0) return;
+
+    const centerX = centerRect.left + centerRect.width / 2 - containerRect.left;
+    const centerY = centerRect.top + centerRect.height / 2 - containerRect.top;
+
+    // Outer circle radius where perimeter dots sit
+    const outerRadius = 152;
+
+    // Angles in radians for top to bottom
+    const angles = [-0.85, -0.42, 0, 0.42, 0.85];
+    const midOffsets = [38, 25, 0, 25, 38];
+
+    const left = leftServices.map((service, i) => {
+      const badgeEl = leftBadgeRefs[i]?.current;
+      if (!badgeEl) return null;
+      const bRect = badgeEl.getBoundingClientRect();
+
+      // Start strictly at the right edge of left badge
+      const startX = bRect.right - containerRect.left + 1;
+      const startY = bRect.top + bRect.height / 2 - containerRect.top;
+
+      const angle = angles[i];
+      const endX = centerX - outerRadius * Math.cos(angle);
+      const endY = centerY + outerRadius * Math.sin(angle);
+
+      const hasBend = Math.abs(startY - endY) > 3;
+      const midX = hasBend ? Math.min(endX - 10, startX + midOffsets[i]) : (startX + endX) / 2;
+      const midY = startY;
+
+      return {
+        color: service.color,
+        startX,
+        startY,
+        midX,
+        midY,
+        endX,
+        endY,
+        hasBend,
+      };
+    }).filter(Boolean);
+
+    const right = rightServices.map((service, i) => {
+      const badgeEl = rightBadgeRefs[i]?.current;
+      if (!badgeEl) return null;
+      const bRect = badgeEl.getBoundingClientRect();
+
+      // Start strictly at the left edge of right badge
+      const startX = bRect.left - containerRect.left - 1;
+      const startY = bRect.top + bRect.height / 2 - containerRect.top;
+
+      const angle = angles[i];
+      const endX = centerX + outerRadius * Math.cos(angle);
+      const endY = centerY + outerRadius * Math.sin(angle);
+
+      const hasBend = Math.abs(startY - endY) > 3;
+      const midX = hasBend ? Math.max(endX + 10, startX - midOffsets[i]) : (startX + endX) / 2;
+      const midY = startY;
+
+      return {
+        color: service.color,
+        startX,
+        startY,
+        midX,
+        midY,
+        endX,
+        endY,
+        hasBend,
+      };
+    }).filter(Boolean);
+
+    setSvgData({
+      left,
+      right,
+      width: containerRect.width,
+      height: containerRect.height,
+    });
+  };
+
+  useEffect(() => {
+    updateLinePositions();
+    const handleResize = () => updateLinePositions();
+    window.addEventListener("resize", handleResize);
+
+    const t1 = setTimeout(updateLinePositions, 60);
+    const t2 = setTimeout(updateLinePositions, 250);
+    const t3 = setTimeout(updateLinePositions, 600);
+
+    let resizeObserver;
+    if (containerRef.current && window.ResizeObserver) {
+      resizeObserver = new ResizeObserver(() => {
+        updateLinePositions();
+      });
+      resizeObserver.observe(containerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      if (resizeObserver) resizeObserver.disconnect();
+    };
+  }, []);
+
   return (
     <section className="services-section" id="services">
       <div className="section-title">
@@ -300,27 +710,152 @@ function Services() {
         </p>
       </div>
 
-      <div className="services-layout">
+      <div className="services-layout" ref={containerRef}>
+        {svgData.width > 0 && (
+          <svg
+            className="services-svg-connectors"
+            width={svgData.width}
+            height={svgData.height}
+            viewBox={`0 0 ${svgData.width} ${svgData.height}`}
+          >
+            {svgData.left.map((c, i) => {
+              const isHovered = hoveredService === `left-${i}`;
+              const pathD = c.hasBend
+                ? `M ${c.startX} ${c.startY} L ${c.midX} ${c.midY} L ${c.endX} ${c.endY}`
+                : `M ${c.startX} ${c.startY} L ${c.endX} ${c.endY}`;
+
+              return (
+                <g key={`left-c-${i}`} className={`connector-group ${isHovered ? "active" : ""}`}>
+                  {isHovered && (
+                    <path
+                      d={pathD}
+                      fill="none"
+                      stroke={c.color}
+                      strokeWidth="5"
+                      strokeOpacity="0.35"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  )}
+                  <path
+                    d={pathD}
+                    fill="none"
+                    stroke={c.color}
+                    strokeWidth={isHovered ? "2.5" : "1.5"}
+                    strokeOpacity={isHovered ? "1" : "0.75"}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="connector-line"
+                  />
+                  {c.hasBend && (
+                    <circle
+                      cx={c.midX}
+                      cy={c.midY}
+                      r={isHovered ? "4.5" : "3.5"}
+                      fill={c.color}
+                      className="connector-dot mid-dot"
+                    />
+                  )}
+                  <circle
+                    cx={c.endX}
+                    cy={c.endY}
+                    r={isHovered ? "6" : "5"}
+                    fill={c.color}
+                    stroke="#ffffff"
+                    strokeWidth="1.5"
+                    className="connector-dot circle-dot"
+                  />
+                </g>
+              );
+            })}
+
+            {svgData.right.map((c, i) => {
+              const isHovered = hoveredService === `right-${i}`;
+              const pathD = c.hasBend
+                ? `M ${c.startX} ${c.startY} L ${c.midX} ${c.midY} L ${c.endX} ${c.endY}`
+                : `M ${c.startX} ${c.startY} L ${c.endX} ${c.endY}`;
+
+              return (
+                <g key={`right-c-${i}`} className={`connector-group ${isHovered ? "active" : ""}`}>
+                  {isHovered && (
+                    <path
+                      d={pathD}
+                      fill="none"
+                      stroke={c.color}
+                      strokeWidth="5"
+                      strokeOpacity="0.35"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  )}
+                  <path
+                    d={pathD}
+                    fill="none"
+                    stroke={c.color}
+                    strokeWidth={isHovered ? "2.5" : "1.5"}
+                    strokeOpacity={isHovered ? "1" : "0.75"}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="connector-line"
+                  />
+                  {c.hasBend && (
+                    <circle
+                      cx={c.midX}
+                      cy={c.midY}
+                      r={isHovered ? "4.5" : "3.5"}
+                      fill={c.color}
+                      className="connector-dot mid-dot"
+                    />
+                  )}
+                  <circle
+                    cx={c.endX}
+                    cy={c.endY}
+                    r={isHovered ? "6" : "5"}
+                    fill={c.color}
+                    stroke="#ffffff"
+                    strokeWidth="1.5"
+                    className="connector-dot circle-dot"
+                  />
+                </g>
+              );
+            })}
+          </svg>
+        )}
+
         <div className="services-left">
           {leftServices.map((service, index) => (
-            <ServiceItem key={index} service={service} side="left" />
+            <ServiceItem
+              key={index}
+              service={service}
+              side="left"
+              index={index}
+              activeHover={hoveredService}
+              onHover={setHoveredService}
+              badgeRef={leftBadgeRefs[index]}
+            />
           ))}
         </div>
 
-        <div className="services-center">
-          <div className="center-ring ring-one"></div>
-          <div className="center-ring ring-two"></div>
+        <div className="services-center" ref={centerRef}>
+          <div className="center-ring ring-outer"></div>
+          <div className="center-ring ring-middle"></div>
           <div className="center-logo-box">
-            <div className="center-brand">
-              DIGITAL<span>ENGINE</span>
-            </div>
-            <small>IDEA TO EMPIRE</small>
+            <img src={logo} alt="Digital Engine" className="services-center-logo" />
+            <small className="services-center-tagline">IDEA TO EMPIRE</small>
           </div>
         </div>
 
         <div className="services-right">
           {rightServices.map((service, index) => (
-            <ServiceItem key={index} service={service} side="right" />
+            <ServiceItem
+              key={index}
+              service={service}
+              side="right"
+              index={index}
+              activeHover={hoveredService}
+              onHover={setHoveredService}
+              badgeRef={rightBadgeRefs[index]}
+            />
           ))}
         </div>
       </div>
@@ -328,23 +863,16 @@ function Services() {
   );
 }
 
-/* ASLI KAHANI SECTION */
-const mediaItems = [
-  { icon: BookOpen, title: "Business Features", text: "Stories that build credibility" },
-  { icon: Mic, title: "Founder Interviews", text: "Real stories. Real impact." },
-  { icon: FileText, title: "Magazine Coverage", text: "Print. Digital. Nationwide." },
-  { icon: Megaphone, title: "Digital PR", text: "Reach the right audience." },
-  { icon: PlayCircle, title: "Podcasts & Videos", text: "Conversations that inspire." },
-];
+
 
 function AsliKahani() {
   return (
     <section className="asli-section" id="asli-kahani">
       <div className="asli-info">
-        <div className="asli-mic">
-          <span></span>
+        <div className="asli-logo-box">
+          <img src={asliLogo} alt="Asli Kahani Logo" className="asli-logo-img" />
         </div>
-        <div>
+        <div className="asli-text-content">
           <h2>ASLI KAHANI</h2>
           <h4>RNI REGISTERED MEDIA HOUSE</h4>
           <p>
@@ -370,7 +898,7 @@ function AsliKahani() {
   );
 }
 
-/* FOOTER SECTION */
+// Footer Section
 function Footer() {
   return (
     <footer className="footer-section">
@@ -378,7 +906,7 @@ function Footer() {
 
       <div className="footer-items">
         <div className="footer-item">
-          <InfinityIcon size={34} />
+          <Infinity size={32} />
           <div>
             <strong>ONE VISION</strong>
             <span>Endless Possibilities</span>
@@ -386,7 +914,7 @@ function Footer() {
         </div>
 
         <div className="footer-item">
-          <Users size={34} />
+          <Users size={32} />
           <div>
             <strong>ONE TEAM</strong>
             <span>Experts. Specialists.</span>
@@ -394,7 +922,7 @@ function Footer() {
         </div>
 
         <div className="footer-item">
-          <Target size={34} />
+          <Target size={32} />
           <div>
             <strong>ONE MISSION</strong>
             <span>Your Growth</span>
@@ -402,7 +930,7 @@ function Footer() {
         </div>
 
         <div className="footer-item">
-          <Crown size={34} />
+          <Crown size={32} />
           <div>
             <strong>ONE GOAL</strong>
             <span>Your Empire</span>
@@ -413,39 +941,12 @@ function Footer() {
   );
 }
 
-function InfinityIcon() {
-  return (
-    <svg width="38" height="38" viewBox="0 0 50 50">
-      <path
-        d="
-        M10 25
-        C10 10 30 10 40 25
-        C30 40 10 40 10 25
-        C10 10 30 10 40 25
-        "
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="3"
-      />
-    </svg>
-  );
-}
-
-/* MAIN APP */
+// Main App Component
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
 
   const renderPage = () => {
     switch (currentPage) {
-      case "home":
-        return (
-          <>
-            <Hero onNavigate={setCurrentPage} />
-            <div className="gradient-wave"></div>
-            <Services />
-            <AsliKahani />
-          </>
-        );
       case "about":
         return <About onNavigate={setCurrentPage} />;
       case "services":
@@ -458,6 +959,7 @@ function App() {
         return <Insights />;
       case "contact":
         return <Contact />;
+      case "home":
       default:
         return (
           <>
@@ -481,3 +983,4 @@ function App() {
   );
 }
 export default App;
+
