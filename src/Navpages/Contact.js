@@ -1,26 +1,63 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
 
+const initialFormData = {
+  name: "",
+  email: "",
+  phone: "",
+  company: "",
+  message: "",
+};
+
+const contactApiUrl = "http://127.0.0.1:8000/api/v1/digital/contact";
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState(initialFormData);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((currentData) => ({
+      ...currentData,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(contactApiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error(data);
+        alert("Unable to submit your request");
+        return;
+      }
+
+      console.log("Saved lead:", data);
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Unable to submit contact request:", error);
+      alert("Unable to submit your request. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -73,7 +110,13 @@ const Contact = () => {
             <div className="form-success">
               <h2>Thank You!</h2>
               <p>Your strategy request has been submitted successfully. A growth specialist will reach out to you within 24 hours.</p>
-              <button className="primary-btn" onClick={() => setSubmitted(false)}>
+              <button
+                className="primary-btn"
+                onClick={() => {
+                  setSubmitted(false);
+                  setFormData(initialFormData);
+                }}
+              >
                 Submit Another Request
               </button>
             </div>
@@ -144,8 +187,8 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="primary-btn submit-btn">
-                Request Growth Session <Send size={16} />
+              <button type="submit" className="primary-btn submit-btn" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Request Growth Session"} <Send size={16} />
               </button>
             </form>
           )}
