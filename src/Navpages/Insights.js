@@ -5,7 +5,6 @@ const articles = [
   {
     title: "The AI Revolution in Branding: How to Not Get Left Behind",
     category: "Branding",
-    readTime: "5 min read",
     date: "Aug 24, 2026",
     summary: "Artificial intelligence is changing the way companies create visual styles and brand voices. Discover how to leverage AI without losing human connection.",
     author: "Amit Sharma",
@@ -13,7 +12,6 @@ const articles = [
   {
     title: "Scaling to $10M ARR: The Growth Engine Playbook",
     category: "Marketing & Sales",
-    readTime: "8 min read",
     date: "Aug 18, 2026",
     summary: "A practical guide to standardizing pipelines, optimizing conversions, and scaling ad campaigns to reach new markets without sacrificing margin.",
     author: "Priya Nair",
@@ -21,7 +19,6 @@ const articles = [
   {
     title: "Why SEO Matters More in the Era of Conversational Search",
     category: "SEO & Media",
-    readTime: "6 min read",
     date: "Jul 30, 2026",
     summary: "As AI tools answer user queries directly, technical SEO and authority building (Asli Kahani style) are essential to remain discoverable.",
     author: "Rohan Das",
@@ -29,7 +26,6 @@ const articles = [
   {
     title: "Cinematic Storytelling: Hooking Customers in Under 3 Seconds",
     category: "Video Production",
-    readTime: "4 min read",
     date: "Jul 15, 2026",
     summary: "Short-form video is the king of attention. Learn our structural secrets to editing videos that capture attention and convert viewers into leads.",
     author: "Siddharth Sen",
@@ -50,8 +46,8 @@ const Insights = () => {
       </div>
 
       <div className="insights-grid">
-        {articles.map((article, index) => (
-          <article className="insight-card" key={index}>
+        {articles.map((article) => (
+          <article className="insight-card" key={article.title}>
             <div className="insight-meta">
               <span className="insight-tag">
                 <Tag size={12} style={{ marginRight: 4 }} /> {article.category}
