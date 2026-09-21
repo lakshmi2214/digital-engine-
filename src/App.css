@@ -330,7 +330,7 @@ button {
 }
 
 .dropdown-item-title {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   color: #1a2038;
   line-height: 1.3;
@@ -830,22 +830,22 @@ button {
 }
 
 .section-title span {
-  font-size: 10px;
+  font-size: 16px;
   font-weight: 700;
+  letter-spacing: 1.2px;
 }
 
 .section-title h2 {
   margin-top: 8px;
-  font-size: 32px;
+  font-size: 28px;
 }
 
 .section-title p {
   margin-top: 10px;
   color: #747a8a;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.7;
 }
-
 
 /* SERVICES GRID */
 
@@ -1724,7 +1724,11 @@ button {
     padding: 35px 16px;
   }
 
-  .about-hero h1,
+  .about-hero h1 {
+    font-size: 24px;
+    letter-spacing: -0.5px;
+  }
+
   .work-header h1,
   .insights-header h1 {
     font-size: 28px;
@@ -1804,7 +1808,7 @@ button {
 .work-page,
 .insights-page,
 .contact-page {
-  padding: 80px 10%;
+  padding: 35px 10% 80px;
   max-width: 1400px;
   margin: 0 auto;
   min-height: calc(100vh - 82px - 200px);
@@ -1813,13 +1817,13 @@ button {
 .section-badge {
   display: inline-flex;
   align-items: center;
-  padding: 6px 14px;
+  padding: 8px 18px;
   background: #f1f6ff;
   color: #407ce9;
   border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
@@ -1831,25 +1835,25 @@ button {
 }
 
 .about-hero h1 {
-  font-size: clamp(36px, 4vw, 54px);
-  line-height: 1.1;
+  font-size: clamp(30px, 2.8vw, 38px);
+  line-height: 1.2;
   color: #11193e;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   margin-bottom: 20px;
 }
 
 .about-subtitle {
-  font-size: 18px;
+  font-size: 15px;
   color: #626879;
-  max-width: 800px;
+  max-width: 650px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .about-mission-vision {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  gap: 35px;
   margin-bottom: 80px;
 }
 
@@ -1880,7 +1884,7 @@ button {
 }
 
 .vision-box h2 {
-  font-size: 24px;
+  font-size: 20px;
   color: #11193e;
   margin-bottom: 16px;
 }
@@ -1888,6 +1892,7 @@ button {
 .vision-box p {
   color: #626879;
   line-height: 1.7;
+  font-size: 13px;
 }
 
 .about-values {
@@ -1900,13 +1905,14 @@ button {
 }
 
 .values-header h2 {
-  font-size: 32px;
+  font-size: 26px;
   color: #11193e;
   margin-bottom: 12px;
 }
 
 .values-header p {
   color: #626879;
+  font-size: 16px;
 }
 
 .values-grid {
@@ -1943,13 +1949,14 @@ button {
 }
 
 .value-card h3 {
-  font-size: 18px;
+  font-size: 16px;
   color: #11193e;
 }
 
 .value-card p {
   color: #626879;
   line-height: 1.6;
+  font-size: 14px;
 }
 
 .about-cta,
@@ -1990,18 +1997,19 @@ button {
 }
 
 .work-header h1 {
-  font-size: clamp(36px, 4vw, 54px);
+  font-size: clamp(28px, 2.8vw, 38px);
+  line-height: 1.2;
   color: #11193e;
-  letter-spacing: -2px;
-  margin-bottom: 20px;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
 }
 
 .work-subtitle {
-  font-size: 18px;
+  font-size: 15px;
   color: #626879;
-  max-width: 800px;
+  max-width: 650px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .work-grid {
@@ -2122,18 +2130,19 @@ button {
 }
 
 .insights-header h1 {
-  font-size: clamp(36px, 4vw, 54px);
+  font-size: clamp(28px, 2.8vw, 38px);
+  line-height: 1.2;
   color: #11193e;
-  letter-spacing: -2px;
-  margin-bottom: 20px;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
 }
 
 .insights-subtitle {
-  font-size: 18px;
+  font-size: 15px;
   color: #626879;
   max-width: 800px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .insights-grid {
