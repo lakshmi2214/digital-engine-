@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageSquare, AlertCircle } from "lucide-react";
 
 const initialFormData = {
   name: "",
@@ -9,12 +9,16 @@ const initialFormData = {
   message: "",
 };
 
-const contactApiUrl = "http://127.0.0.1:8000/api/v1/digital/contact";
+// Backend 
+const contactApiUrl =
+  import.meta.env.VITE_CONTACT_API_URL ||
+  "http://127.0.0.1:8030/api/digital/leads/";
 
 const Contact = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData((currentData) => ({
@@ -26,6 +30,15 @@ const Contact = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage("");
+
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      company: formData.company.trim(),
+      message: formData.message.trim(),
+    };
 
     try {
       const response = await fetch(contactApiUrl, {
@@ -33,28 +46,35 @@ const Contact = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          message: formData.message,
-        }),
+        body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
+      let data = null;
+      const contentType = response.headers.get("content-type") || "";
+
+      if (contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        data = text ? { detail: text } : null;
+      }
 
       if (!response.ok) {
-        console.error(data);
-        alert("Unable to submit your request");
+        const message =
+          data?.detail ||
+          (data?.fields ? `Missing: ${data.fields.join(", ")}` : "Failed to submit lead.");
+        setErrorMessage(message);
         return;
       }
 
-      console.log("Saved lead:", data);
+      console.log("Successfully saved lead in backend:", data);
       setSubmitted(true);
+      setFormData(initialFormData);
     } catch (error) {
       console.error("Unable to submit contact request:", error);
-      alert("Unable to submit your request. Please try again.");
+      setErrorMessage(
+        "Could not connect to the server. Please check if the backend is running."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -114,7 +134,6 @@ const Contact = () => {
                 className="primary-btn"
                 onClick={() => {
                   setSubmitted(false);
-                  setFormData(initialFormData);
                 }}
               >
                 Submit Another Request
@@ -122,6 +141,25 @@ const Contact = () => {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="contact-form">
+              {errorMessage && (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    color: "#e53e3e",
+                    background: "rgba(229, 62, 62, 0.1)",
+                    padding: "10px 14px",
+                    borderRadius: "6px",
+                    marginBottom: "15px",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  <AlertCircle size={18} />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               <div className="form-group">
                 <label htmlFor="name">Your Name</label>
                 <input
