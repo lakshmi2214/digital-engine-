@@ -200,12 +200,12 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="company">Company / Startup</label>
+                  <label htmlFor="company">Company</label>
                   <input
                     type="text"
                     id="company"
                     name="company"
-                    placeholder="e.g. Acme Corp"
+                    placeholder="Enter Your Company Name"
                     value={formData.company}
                     onChange={handleChange}
                   />
@@ -219,7 +219,7 @@ const Contact = () => {
                   name="message"
                   rows="4"
                   required
-                  placeholder="Tell us about your brand challenges or growth goals..."
+                  placeholder="How we can help you grow?"
                   value={formData.message}
                   onChange={handleChange}
                 ></textarea>
