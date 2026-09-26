@@ -9,10 +9,11 @@ const initialFormData = {
   message: "",
 };
 
-// Backend 
+// Ensure this matches your running Django port (8020)
 const contactApiUrl =
-  import.meta.env.VITE_CONTACT_API_URL ||
-  "http://127.0.0.1:8030/api/digital/leads/";
+  (typeof import.meta !== "undefined" && import.meta.env?.VITE_CONTACT_API_URL) ||
+  (typeof process !== "undefined" && process.env?.REACT_APP_CONTACT_API_URL) ||
+  "http://127.0.0.1:8020/api/digital/leads/";
 
 const Contact = () => {
   const [formData, setFormData] = useState(initialFormData);
@@ -27,9 +28,36 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    try {
+      const response = await fetch(contactApiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.detail || "Failed to submit. Please try again.");
+      }
+
+      setSubmitted(true);
+      setFormData(initialFormData);
+    } catch (err) {
+      console.error("Submission error:", err);
+      setErrorMessage(
+        err.message || "Could not connect to the server. Please check your backend."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -41,7 +69,9 @@ const Contact = () => {
           </span>
           <h1>Let's Start Your Empire.</h1>
           <p className="contact-desc">
-            Book a complimentary growth strategy session. Our team of specialists will analyze your pipeline, brand identity, and positioning to outline an execution roadmap.
+            Book a complimentary growth strategy session. Our team of specialists
+            will analyze your pipeline, brand identity, and positioning to outline
+            an execution roadmap.
           </p>
 
           <div className="info-items">
@@ -70,8 +100,8 @@ const Contact = () => {
                 <MapPin size={18} />
               </div>
               <div>
-                <strong>Visit Our Office</strong>
-                <span>280/1, Anniamma Arcade, Sampige Road, 18th Cross Rd, Malleshwaram, Bengaluru, Karnataka 560003</span>
+                <strong>Headquarters</strong>
+                <span>Bangalore, India</span>
               </div>
             </div>
           </div>
@@ -79,60 +109,49 @@ const Contact = () => {
 
         <div className="contact-form-panel">
           {submitted ? (
-            <div className="form-success">
-              <h2>Thank You!</h2>
-              <p>Your strategy request has been submitted successfully. A growth specialist will reach out to you within 24 hours.</p>
+            <div className="success-message">
+              <h3>Thank You!</h3>
+              <p>Your request has been received. Our team will contact you shortly.</p>
               <button
+                type="button"
                 className="primary-btn"
-                onClick={() => {
-                  setSubmitted(false);
-                }}
+                onClick={() => setSubmitted(false)}
               >
                 Submit Another Request
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="contact-form">
+            <form onSubmit={handleSubmit} className="lead-form">
+              <h2>Schedule Consultation</h2>
+              <p>Fill out the form below and we'll be in touch within 24 hours.</p>
+
               {errorMessage && (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    color: "#e53e3e",
-                    background: "rgba(229, 62, 62, 0.1)",
-                    padding: "10px 14px",
-                    borderRadius: "6px",
-                    marginBottom: "15px",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  <AlertCircle size={18} />
-                  <span>{errorMessage}</span>
+                <div className="error-banner" style={{ color: "#ef4444", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "6px" }}>
+                  <AlertCircle size={16} /> {errorMessage}
                 </div>
               )}
 
               <div className="form-group">
-                <label htmlFor="name">Your Name</label>
+                <label htmlFor="name">Full Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
-                  placeholder="Enter your full name"
+                  placeholder="Enter Your Name"
                   value={formData.name}
                   onChange={handleChange}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Work Email</label>
+                <label htmlFor="email">Email Address</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
-                  placeholder="name@company.com"
+                  placeholder="Enter Your Email"
                   value={formData.email}
                   onChange={handleChange}
                 />
