@@ -109,7 +109,7 @@ const Contact = () => {
               </div>
               <div>
                 <strong>Call Us</strong>
-                <a href="tel:+919876543210">+91 98765 43210</a>
+                <a href="tel:+919876543210">+6366333444</a>
               </div>
             </div>
 
@@ -118,8 +118,8 @@ const Contact = () => {
                 <MapPin size={18} />
               </div>
               <div>
-                <strong>Visit Headquarters</strong>
-                <span>DLF CyberCity, Phase 3, Gurugram, India</span>
+                <strong>Visit Our Office</strong>
+                <span>280/1, Anniamma Arcade, Sampige Road, 18th Cross Rd, Malleshwaram, Bengaluru, Karnataka 560003</span>
               </div>
             </div>
           </div>
