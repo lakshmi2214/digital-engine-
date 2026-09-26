@@ -27,57 +27,9 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    setErrorMessage("");
-
-    const payload = {
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      phone: formData.phone.trim(),
-      company: formData.company.trim(),
-      message: formData.message.trim(),
-    };
-
-    try {
-      const response = await fetch(contactApiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      let data = null;
-      const contentType = response.headers.get("content-type") || "";
-
-      if (contentType.includes("application/json")) {
-        data = await response.json();
-      } else {
-        const text = await response.text();
-        data = text ? { detail: text } : null;
-      }
-
-      if (!response.ok) {
-        const message =
-          data?.detail ||
-          (data?.fields ? `Missing: ${data.fields.join(", ")}` : "Failed to submit lead.");
-        setErrorMessage(message);
-        return;
-      }
-
-      console.log("Successfully saved lead in backend:", data);
-      setSubmitted(true);
-      setFormData(initialFormData);
-    } catch (error) {
-      console.error("Unable to submit contact request:", error);
-      setErrorMessage(
-        "Could not connect to the server. Please check if the backend is running."
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
   };
 
   return (
