@@ -2241,8 +2241,8 @@ button {
 /* CONTACT PAGE */
 .contact-container {
   display: grid;
-  grid-template-columns: 45% 55%;
-  gap: 60px;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 0;
   background: white;
   border-radius: 30px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
@@ -2254,10 +2254,11 @@ button {
   background: #f8fafc;
   padding: 60px;
   border-right: 1px solid #eef0f5;
+  min-width: 0;
 }
 
 .contact-info-panel h1 {
-  font-size: clamp(32px, 3.5vw, 44px);
+  font-size: clamp(28px, 3vw, 38px);
   color: #11193e;
   line-height: 1.1;
   letter-spacing: -1.5px;
@@ -2318,10 +2319,12 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
 }
 
 .contact-form {
   width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -2331,12 +2334,15 @@ button {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
+  width: 100%;
 }
 
 .form-row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
+  width: 100%;
 }
 
 .form-group label {
@@ -2347,6 +2353,8 @@ button {
 
 .form-group input,
 .form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px 16px;
   border-radius: 12px;
   border: 1px solid #cbd5e1;
@@ -2411,6 +2419,11 @@ button {
   .contact-info-panel,
   .contact-form-panel {
     padding: 40px;
+  }
+
+  .contact-info-panel {
+    border-right: none;
+    border-bottom: 1px solid #eef0f5;
   }
 
   .contact-container {
