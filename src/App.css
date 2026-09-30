@@ -12,6 +12,7 @@ body {
   font-family: "Poppins", "Segoe UI", Arial, sans-serif;
   color: #111936;
   background: #fff;
+  overflow-x: hidden;
 }
 
 button {
@@ -21,7 +22,6 @@ button {
 
 .website {
   width: 100%;
-  overflow: hidden;
 }
 
 
@@ -393,12 +393,14 @@ button {
   display: grid;
   grid-template-columns: 44% 56%;
   align-items: center;
-  background:
-    radial-gradient(circle at 80% 20%,
-      rgba(224, 245, 255, 0.7),
-      transparent 35%),
-    #fff;
+
+
+  background: linear-gradient(100deg,
+      #EBE7FB 0%,
+      #FCEBEC 50%,
+      #EAF5EE 100%);
 }
+
 
 
 /* LEFT */
@@ -1116,13 +1118,13 @@ button {
 }
 
 .media-card h3 {
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .media-card p {
   margin-top: 9px;
   color: #777c8b;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
