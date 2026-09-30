@@ -335,7 +335,6 @@ function InfinityGraphic() {
 }
 
 
-
 function AsliKahani() {
   return (
     <section className="asli-section" id="asli-kahani">
@@ -435,7 +434,6 @@ function App() {
         return (
           <>
             <Hero onNavigate={setCurrentPage} />
-            <div className="gradient-wave"></div>
             <Services />
             <AsliKahani />
           </>
