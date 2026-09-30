@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowUpRight, Sparkles, Award } from "lucide-react";
 
 const projects = [
-  {
+  { 
     title: "Vanguard Identity",
     category: "Branding & Creative",
     tagline: "Reimagining luxury for the next generation.",
@@ -52,7 +52,7 @@ const projects = [
   },
 ];
 
-const Work = () => {
+const Work = ({ onNavigate }) => {
   return (
     <section className="work-page fade-in">
       <div className="work-header">
@@ -66,8 +66,8 @@ const Work = () => {
       </div>
 
       <div className="work-grid">
-        {projects.map((project, index) => (
-          <div className="work-card" key={index}>
+        {projects.map((project) => (
+          <div className="work-card" key={project.title}>
             <div className="work-card-media" style={{ background: project.theme }}>
               <div className="work-card-overlay">
                 <span className="project-category">{project.category}</span>
@@ -92,7 +92,7 @@ const Work = () => {
       <div className="work-cta">
         <h2>Ready to build your success story?</h2>
         <p>Let's design and execute a custom strategy for your business scaling goals.</p>
-        <button className="primary-btn">Let's Connect</button>
+        <button className="primary-btn" onClick={() => onNavigate && onNavigate("contact")}>Let's Connect</button>
       </div>
     </section>
   );
