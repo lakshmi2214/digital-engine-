@@ -100,8 +100,8 @@ const Contact = () => {
                 <MapPin size={18} />
               </div>
               <div>
-                <strong>Headquarters</strong>
-                <span>Bangalore, India</span>
+                <strong>Address</strong>
+                <span>Corp. Off: 280/1, Anniamma Arcade, Sampige Road, 18th Cross Rd, Malleshwaram, Bengaluru, Karnataka 560003</span>
               </div>
             </div>
           </div>
