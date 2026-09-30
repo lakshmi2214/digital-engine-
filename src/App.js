@@ -24,6 +24,7 @@ import Work from "./Navpages/Work";
 import Insights from "./Navpages/Insights";
 import Contact from "./Navpages/Contact";
 import Services from "./Navpages/Services";
+import AsliKahaniPage from "./Navpages/AsliKahani";
 
 const mediaItems = [
   { icon: BookOpen, title: "Business Features", text: "Stories that build credibility" },
@@ -422,9 +423,9 @@ function App() {
       case "services":
         return <Services />;
       case "asli-kahani":
-        return <AsliKahani />;
+        return <AsliKahaniPage onNavigate={setCurrentPage} />;
       case "work":
-        return <Work />;
+        return <Work onNavigate={setCurrentPage} />;
       case "insights":
         return <Insights />;
       case "contact":
