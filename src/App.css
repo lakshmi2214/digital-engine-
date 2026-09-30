@@ -213,7 +213,7 @@ button {
   z-index: 1000;
 }
 
-/* Invisible hover bridge */
+
 .dropdown-menu::before {
   content: "";
   position: absolute;
@@ -395,8 +395,6 @@ button {
 }
 
 
-/* HERO */
-
 .hero-section {
   min-height: 510px;
   padding: 50px 5% 40px;
@@ -410,10 +408,6 @@ button {
       #FCEBEC 50%,
       #EAF5EE 100%);
 }
-
-
-
-/* LEFT */
 
 .hero-left {
   padding-top: 5px;
@@ -489,7 +483,6 @@ button {
   color: #111936;
 }
 
-
 /* STATS */
 
 .stats-row {
@@ -556,8 +549,6 @@ button {
 }
 
 
-/* IMAGE CONTAINERS */
-
 .infinity-image {
   position: absolute;
   width: 168px;
@@ -610,8 +601,6 @@ button {
 }
 
 
-/* PERSON */
-
 .person-silhouette {
   position: absolute;
   left: 76px;
@@ -637,9 +626,6 @@ button {
       100% 100%,
       0 100%);
 }
-
-
-/* STAIRS */
 
 .stairs {
   position: absolute;
@@ -675,8 +661,6 @@ button {
   width: 90%;
 }
 
-
-/* CITY */
 
 .city {
   position: absolute;
@@ -715,9 +699,6 @@ button {
 .b5 {
   height: 75px;
 }
-
-
-/* VISUAL LABELS */
 
 .visual-point {
   position: absolute;
@@ -797,9 +778,6 @@ button {
   left: 408px;
 }
 
-
-/* GRADIENT WAVE */
-
 .gradient-wave {
   width: 100%;
   margin: 0;
@@ -827,9 +805,6 @@ button {
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
 }
-
-
-/* SERVICES */
 
 .services-section {
   padding: 40px 6% 80px;
@@ -859,8 +834,6 @@ button {
   font-size: 14px;
   line-height: 1.7;
 }
-
-/* SERVICES GRID */
 
 .services-layout {
   max-width: 1120px;
@@ -965,9 +938,6 @@ button {
   transform: scale(1.1);
 }
 
-
-/* CENTER */
-
 .services-center {
   width: 340px;
   height: 340px;
@@ -1028,9 +998,6 @@ button {
   letter-spacing: 2.2px;
   margin-top: 4px;
 }
-
-
-/* ASLI KAHANI */
 
 .asli-section {
   padding: 60px 6%;
@@ -1101,9 +1068,6 @@ button {
   font-size: 11px;
   line-height: 1.65;
 }
-
-
-/* MEDIA */
 
 .media-grid {
   display: grid;
@@ -1195,7 +1159,6 @@ button {
   transform: translateY(-2px);
 }
 
-/* Exact Icon Colors for All 4 Items */
 .footer-item:nth-child(1) svg {
   color: #ff8552;
 }
@@ -1227,9 +1190,6 @@ button {
   color: #9ba6bf;
   letter-spacing: 0.2px;
 }
-
-
-/* RESPONSIVE */
 
 @media (max-width: 1100px) {
 
@@ -1576,7 +1536,6 @@ button {
     overflow: hidden;
   }
 
-  /* Services Mobile */
   .services-section {
     padding: 30px 16px 45px;
   }
@@ -1652,7 +1611,6 @@ button {
     font-size: 9.5px;
   }
 
-  /* Asli Kahani Mobile */
   .asli-section {
     padding: 35px 16px;
     gap: 24px;
@@ -1700,7 +1658,6 @@ button {
     border-radius: 12px;
   }
 
-  /* Footer Mobile */
   .footer-section {
     min-height: auto;
   }
@@ -1732,7 +1689,6 @@ button {
     font-size: 9px;
   }
 
-  /* Inner Pages Mobile */
   .about-page,
   .work-page,
   .insights-page,
@@ -1802,7 +1758,6 @@ button {
 
 }
 
-/* FADE-IN TRANSITION */
 .fade-in {
   animation: fadeIn 0.4s ease-in-out forwards;
 }
@@ -1819,7 +1774,6 @@ button {
   }
 }
 
-/* GENERAL PAGE LAYOUT STYLING */
 .about-page,
 .work-page,
 .insights-page,
@@ -1844,7 +1798,6 @@ button {
   margin-bottom: 20px;
 }
 
-/* ABOUT PAGE */
 .about-hero {
   text-align: center;
   margin-bottom: 60px;
@@ -2006,7 +1959,6 @@ button {
   margin: 0 auto;
 }
 
-/* WORK PAGE */
 .work-header {
   text-align: center;
   margin-bottom: 60px;
@@ -2141,7 +2093,6 @@ button {
   gap: 10px;
 }
 
-/* INSIGHTS PAGE */
 .insights-header {
   text-align: center;
   margin-bottom: 60px;
@@ -2254,7 +2205,6 @@ button {
   gap: 10px;
 }
 
-/* CONTACT PAGE */
 .contact-container {
   display: grid;
   grid-template-columns: 1fr 1.25fr;
@@ -2414,7 +2364,6 @@ button {
   margin-bottom: 24px;
 }
 
-/* RESPONSIVE BREAKPOINTS FOR NEW PAGES */
 @media (max-width: 991px) {
 
   .about-page,
@@ -2453,8 +2402,6 @@ button {
   }
 }
 
-/* ASLI KAHANI DEDICATED PAGE STYLES */
-
 .asli-kahani-page {
   width: 100%;
   min-height: 82vh;
@@ -2479,7 +2426,6 @@ button {
   position: relative;
 }
 
-/* Left Content Panel */
 .asli-hero-content {
   display: flex;
   flex-direction: column;
@@ -2556,7 +2502,6 @@ button {
   box-shadow: 0 8px 20px rgba(168, 85, 247, 0.15);
 }
 
-/* Right Visual Collage */
 .asli-visual-wrapper {
   position: relative;
   width: 100%;
@@ -2595,7 +2540,6 @@ button {
   z-index: 2;
 }
 
-/* Center Main Card */
 .main-hero-card {
   position: absolute;
   width: 260px;
@@ -2649,7 +2593,6 @@ button {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Floating Cards Base */
 .floating-card {
   position: absolute;
   background: #ffffff;
@@ -2659,7 +2602,6 @@ button {
   transition: transform 0.3s ease;
 }
 
-/* Left Card: Articles */
 .articles-card {
   width: 160px;
   padding: 12px;
@@ -2722,7 +2664,6 @@ button {
   width: 50%;
 }
 
-/* Top Right Card: Videos */
 .videos-card {
   width: 150px;
   padding: 10px;
@@ -2780,7 +2721,6 @@ button {
   padding-left: 2px;
 }
 
-/* Bottom Right Card: Podcasts */
 .podcasts-card {
   padding: 12px 18px;
   right: 40px;
@@ -2917,8 +2857,6 @@ button {
   }
 }
 
-/*  ASLI KAHANI MEDIA FEATURES SECTION STYLES  */
-
 .asli-media-section {
   width: 100%;
   padding: 70px 5% 90px;
@@ -2937,7 +2875,6 @@ button {
   gap: 50px;
 }
 
-/* Left Info Box */
 .asli-media-info {
   display: flex;
   align-items: flex-start;
@@ -2996,7 +2933,6 @@ button {
   margin: 0;
 }
 
-/* Right 5 Feature Cards Grid */
 .asli-cards-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -3055,7 +2991,6 @@ button {
   margin: 0;
 }
 
-/* Responsive Styles for Media Section */
 @media (max-width: 1200px) {
   .asli-media-container {
     flex-direction: column;
