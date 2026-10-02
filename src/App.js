@@ -229,7 +229,6 @@ function InfinityGraphic() {
           />
         </g>
 
-        {/* Right Circle Image (City Skyline) */}
         <g clipPath="url(#rightCircleClip)">
           <image
             href="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=600&q=80"
@@ -249,7 +248,6 @@ function InfinityGraphic() {
           />
         </g>
 
-        {/* Curved Connectors meeting in the exact middle */}
 
         <path d="M 200 50 Q 240 60 300 125" fill="none" stroke="#1678ed" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.85" />
         <circle cx="200" cy="50" r="4" fill="#1678ed" />
@@ -412,7 +410,7 @@ function Footer() {
   );
 }
 
-// Main App Component
+
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
 
