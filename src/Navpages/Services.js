@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import {
   BookOpen,
@@ -172,10 +171,10 @@ function Services() {
     const centerX = centerRect.left + centerRect.width / 2 - containerRect.left;
     const centerY = centerRect.top + centerRect.height / 2 - containerRect.top;
 
-    // Outer circle radius where perimeter dots sit
+
     const outerRadius = 152;
 
-    // Angles in radians for top to bottom
+
     const angles = [-0.85, -0.42, 0, 0.42, 0.85];
     const midOffsets = [38, 25, 0, 25, 38];
 
@@ -184,7 +183,7 @@ function Services() {
       if (!badgeEl) return null;
       const bRect = badgeEl.getBoundingClientRect();
 
-      // Start strictly at the right edge of left badge
+
       const startX = bRect.right - containerRect.left + 1;
       const startY = bRect.top + bRect.height / 2 - containerRect.top;
 
@@ -213,7 +212,7 @@ function Services() {
       if (!badgeEl) return null;
       const bRect = badgeEl.getBoundingClientRect();
 
-      // Start strictly at the left edge of right badge
+
       const startX = bRect.left - containerRect.left - 1;
       const startY = bRect.top + bRect.height / 2 - containerRect.top;
 
@@ -271,7 +270,7 @@ function Services() {
     };
   }, []);
 
-  return (
+  return ( 
     <section className="services-section" id="services">
       <div className="section-title">
         <span>WE DON'T OFFER SERVICES.</span>
