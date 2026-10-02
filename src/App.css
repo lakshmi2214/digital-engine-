@@ -1117,20 +1117,7 @@ button {
   margin-top: auto;
 }
 
-.footer-wave {
-  position: absolute;
-  top: -35px;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: linear-gradient(90deg,
-      #2d5de8,
-      #9a4ddd,
-      #f2577e,
-      #f4b229,
-      #12bdb1);
-  border-radius: 50%;
-}
+
 
 .footer-items {
   min-height: 125px;
