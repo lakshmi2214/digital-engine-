@@ -9,7 +9,7 @@ const initialFormData = {
   message: "",
 };
 
-// Ensure this matches your running Django port (8020)
+// Backend API URL configuration port number 8020 
 const contactApiUrl =
   (typeof import.meta !== "undefined" && import.meta.env?.VITE_CONTACT_API_URL) ||
   (typeof process !== "undefined" && process.env?.REACT_APP_CONTACT_API_URL) ||
