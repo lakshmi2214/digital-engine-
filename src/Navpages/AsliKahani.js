@@ -40,10 +40,8 @@ const mediaCards = [
 const AsliKahani = ({ onNavigate }) => {
   return (
     <div className="asli-kahani-page-wrapper fade-in">
-      {/* Top Hero Section */}
       <section className="asli-kahani-page">
         <div className="asli-hero-container">
-          {/* Left Content Panel */}
           <div className="asli-hero-content">
             <div className="asli-top-tag">
               <span className="tag-accent-line"></span>
@@ -101,7 +99,7 @@ const AsliKahani = ({ onNavigate }) => {
                 <span className="articles-badge">Articles</span>
                 <div className="article-snippet">
                   <img
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+                    src="/aslikahani.jpeg"
                     alt="Author"
                     className="article-img"
                   />
@@ -118,7 +116,7 @@ const AsliKahani = ({ onNavigate }) => {
 
               <div className="main-hero-card">
                 <img
-                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+                  src="/aslikahani1.jpeg"
                   alt="Asli Kahani Sunset"
                   className="main-hero-img"
                 />
@@ -132,7 +130,7 @@ const AsliKahani = ({ onNavigate }) => {
               <div className="floating-card videos-card">
                 <div className="video-thumb-wrapper">
                   <img
-                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=300&q=80"
+                    src="/aslikahani2.jpeg"
                     alt="Video Thumbnail"
                     className="video-thumb-img"
                   />
